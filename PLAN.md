@@ -81,22 +81,26 @@ content-only sections be created as data, without new code.
 |---|---|
 | App | React + TypeScript + Vite, installable as a web app (PWA) |
 | Hosting | **GitHub Pages**, auto-deployed by GitHub Actions on push to `main` |
-| Data | **A separate private GitHub repo** (e.g. `lentor-household-data`) holding JSON/Markdown files and photos |
-| Read/write | The app talks to the GitHub API with a fine-grained token scoped *only* to the data repo, entered once per phone (setup link/QR) |
+| Data | JSON files on a separate **`household-data` branch** of this repo, never bundled into the website |
+| Read/write | The app talks to the GitHub API with a fine-grained access key (token) scoped to this repo, entered once per phone |
+| People | Each phone picks who it belongs to (Mat, Lesley or Renya); posts show that name |
 | Offline | Last-loaded data is cached on the phone, so the app still works with poor signal |
 
-Why a separate data repo: this code repo is **public**, so household content
-(schedules, photos, contacts) must not live in it. A private Pages site would
-need a paid GitHub plan; keeping the data separate avoids that.
+**Privacy.** The repo will be made **private** once on GitHub Pro (Pages from a
+private repo needs a paid plan). Even then, a Pages *website* is reachable by
+anyone with its address. So the website only contains the empty app, and all
+household content is fetched from the private repo with the access key. Until
+the repo is private, only sample data is used and no household content is
+committed.
 
 What this means in practice:
-- Free, no servers, everything versioned on GitHub. Mat and Lesley can also
-  edit content directly on github.com.
-- Updates are not instant. The app refreshes when opened and every ~30–60 s
+- No servers to run, and everything is versioned on GitHub. Mat and Lesley can
+  also edit content directly on github.com (`household-data` branch).
+- Updates are not instant. The app refreshes when opened and about every 45 s
   while open. That is fine for a household.
 - No push notifications (which also fits principle 4).
-- Simultaneous edits to the same file are handled by retrying on conflict.
-- Each phone holds a token, so a lost phone means revoking that token.
+- Simultaneous edits to the same file are detected and merged by retrying.
+- Each phone holds a key, so a lost phone means cancelling that key on GitHub.
 
 ## Roadmap
 
@@ -109,8 +113,10 @@ What this means in practice:
 3. **Next**: Calendar, Days off, Holidays, Photo albums, Useful contacts.
 4. **Use it for a few weeks, ask Renya what helps, adjust.**
 
-## Open decisions
-- Name of the private data repo, and who creates the tokens (simplest: Mat
-  creates one per phone).
-- Whether each person gets a simple profile ("who am I on this phone") so
-  posts show an author name.
+## Status
+- [x] Plan agreed
+- [x] Foundations: scaffold, PWA, Pages deploy workflow, module registry and
+  shell, GitHub data layer with offline cache and conflict retry, first-run
+  setup ("who are you" plus access key, or try-it-out mode), Notes module
+- [ ] Switch to GitHub Pro, make repo private, enable Pages, create access keys
+- [ ] First version modules
