@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { PEOPLE, type Person } from '../core/people';
 import { GitHubStore } from '../core/data/githubStore';
 import type { Settings } from '../core/session';
+import { APP_NAME } from '../appName';
 
 const DEFAULT_REPO = { owner: 'MattoDuffo', repo: 'Lentor-Renya-App', branch: 'household-data' };
 
@@ -34,7 +35,7 @@ export function Setup({ onDone }: { onDone: (s: Settings) => void }) {
     <main className="setup">
       <img className="hero" src={`${import.meta.env.BASE_URL}logo.jpg`} alt="A happy red panda by the pool at the Lentor Beach Club" />
       <h1 className="greeting">Welcome!</h1>
-      <p className="lede">Kampung Lentor: a shared place for the day ahead and the little things worth knowing.</p>
+      <p className="lede">{APP_NAME}: a shared place for the day ahead and the little things worth knowing.</p>
 
       <h2>Who is using this phone?</h2>
       <div className="people">

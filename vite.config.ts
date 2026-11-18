@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import { APP_NAME } from './src/appName';
 
 // Served from https://<user>.github.io/Lentor-Renya-App/
 const base = '/Lentor-Renya-App/';
@@ -9,12 +10,13 @@ export default defineConfig({
   base,
   plugins: [
     react(),
+    { name: 'app-name', transformIndexHtml: (html) => html.replaceAll('%APP_NAME%', APP_NAME) },
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.png', 'apple-touch-icon.png', 'logo.jpg'],
       manifest: {
-        name: 'Kampung Lentor',
-        short_name: 'Kampung Lentor',
+        name: APP_NAME,
+        short_name: APP_NAME,
         description: 'Our household app: the day at a glance and answers to everyday questions.',
         theme_color: '#0b7590',
         background_color: '#fff7ec',

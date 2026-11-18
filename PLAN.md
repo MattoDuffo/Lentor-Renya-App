@@ -1,4 +1,6 @@
-# Kampung Lentor — Plan
+# Household App Plan
+
+Working title: **Lentor Lah** (may change; set in `src/appName.ts`).
 
 A small web app for the Lentor household: Mat, Lesley and Renya.
 

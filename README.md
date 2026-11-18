@@ -1,7 +1,9 @@
-# Kampung Lentor
+# Lentor Lah (working title)
 
 A small web app for the Lentor household: the day at a glance and answers to
 everyday questions. See [PLAN.md](PLAN.md) for the goals, principles and roadmap.
+
+The app name is set in one place, `src/appName.ts`.
 
 ## Develop
 
