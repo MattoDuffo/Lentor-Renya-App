@@ -34,7 +34,7 @@ export function Setup({ onDone }: { onDone: (s: Settings) => void }) {
     <main className="setup">
       <img className="hero" src={`${import.meta.env.BASE_URL}logo.jpg`} alt="A happy red panda by the pool at the Lentor Beach Club" />
       <h1 className="greeting">Welcome!</h1>
-      <p className="lede">A shared place for the day ahead and the little things worth knowing.</p>
+      <p className="lede">Kampung Lentor: a shared place for the day ahead and the little things worth knowing.</p>
 
       <h2>Who is using this phone?</h2>
       <div className="people">

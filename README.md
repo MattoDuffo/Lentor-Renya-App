@@ -1,4 +1,4 @@
-# Lentor Home
+# Kampung Lentor
 
 A small web app for the Lentor household: the day at a glance and answers to
 everyday questions. See [PLAN.md](PLAN.md) for the goals, principles and roadmap.

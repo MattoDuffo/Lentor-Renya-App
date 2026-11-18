@@ -13,8 +13,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.png', 'apple-touch-icon.png', 'logo.jpg'],
       manifest: {
-        name: 'Lentor Home',
-        short_name: 'Lentor',
+        name: 'Kampung Lentor',
+        short_name: 'Kampung Lentor',
         description: 'Our household app: the day at a glance and answers to everyday questions.',
         theme_color: '#0b7590',
         background_color: '#fff7ec',

@@ -1,4 +1,4 @@
-# Lentor Household App — Plan
+# Kampung Lentor — Plan
 
 A small web app for the Lentor household: Mat, Lesley and Renya.
 
