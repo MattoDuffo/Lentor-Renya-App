@@ -13,8 +13,9 @@ export function Today() {
   const now = new Date();
   return (
     <section>
+      <img className="hero" src={`${import.meta.env.BASE_URL}logo.jpg`} alt="" />
       <p className="date">{now.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' })}</p>
-      <h1>
+      <h1 className="greeting">
         {greeting(now.getHours())}, {person}
       </h1>
       {modules

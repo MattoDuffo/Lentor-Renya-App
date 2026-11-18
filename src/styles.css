@@ -1,28 +1,45 @@
+/* Colours come from the Lentor Beach Club logo: pool turquoise, red-panda
+   orange and brown, warm sand, and the navy of the sign. */
 :root {
-  --bg: #f7f5f0;
+  --bg: #fff7ec;          /* warm sand */
   --surface: #ffffff;
-  --text: #22251f;
-  --muted: #6b6f66;
-  --line: #e4e1d8;
-  --accent: #2f6f5e;
+  --sand: #fbe9d3;
+  --text: #3a1d14;        /* panda brown */
+  --muted: #86604f;
+  --line: #f1dfc8;
+  --ink: #1e3a6b;         /* sign navy, for headings */
+  --accent: #0b7590;      /* pool turquoise, deep enough for text */
   --accent-text: #ffffff;
-  --accent-soft: #e3efe9;
-  --danger: #a3362b;
-  --radius: 14px;
+  --accent-soft: #dcf2f6;
+  --sun: #f0661a;         /* panda orange */
+  --sun-soft: #ffe6d2;
+  --sun-text: #a8450c;
+  --pink: #f47c98;        /* flamingo */
+  --danger: #b3261e;
+  --shadow: 0 2px 10px rgb(150 90 40 / 0.08);
+  --radius: 18px;
   color-scheme: light;
 }
 
+/* Dark: the same club after sunset. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #161815;
-    --surface: #20231f;
-    --text: #ecebe6;
-    --muted: #a3a69c;
-    --line: #33372f;
-    --accent: #6fbfa5;
-    --accent-text: #10201a;
-    --accent-soft: #233a32;
-    --danger: #f08a7e;
+    --bg: #18120f;
+    --surface: #241b16;
+    --sand: #2e231d;
+    --text: #f8ebdd;
+    --muted: #c2a797;
+    --line: #3a2c24;
+    --ink: #a9c6f0;
+    --accent: #45c3dd;
+    --accent-text: #0a2a33;
+    --accent-soft: #143842;
+    --sun: #ff8b45;
+    --sun-soft: #3a2416;
+    --sun-text: #ffb27d;
+    --pink: #ff9ab2;
+    --danger: #ff8f80;
+    --shadow: none;
     color-scheme: dark;
   }
 }
@@ -34,13 +51,22 @@ html, body { margin: 0; }
 body {
   background: var(--bg);
   color: var(--text);
-  font: 17px/1.5 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font: 17px/1.5 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   -webkit-tap-highlight-color: transparent;
 }
 
-h1 { font-size: 1.7rem; line-height: 1.2; margin: 0.2rem 0 0.4rem; }
-h2 { font-size: 1.05rem; margin: 1.4rem 0 0.6rem; }
-a { color: var(--accent); }
+h1 { font-size: 1.75rem; line-height: 1.2; margin: 0.2rem 0 0.4rem; color: var(--ink); font-weight: 800; }
+h2 { font-size: 1.08rem; margin: 1.4rem 0 0.6rem; color: var(--ink); font-weight: 800; }
+a { color: var(--accent); font-weight: 700; }
+
+/* The friendly script from the logo, used sparingly for greetings. */
+.greeting {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  font-size: 1.9rem;
+  line-height: 1.35;
+  margin-top: 0;
+}
 
 .page, .setup {
   max-width: 640px;
@@ -48,9 +74,20 @@ a { color: var(--accent); }
   padding: calc(16px + env(safe-area-inset-top)) 16px calc(96px + env(safe-area-inset-bottom));
 }
 
+.hero {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: 50% 38%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+
 .lede { color: var(--muted); margin-top: 0; }
 .hint { color: var(--muted); font-size: 0.92rem; }
-.date { color: var(--muted); margin: 0; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.8rem; }
+.date { color: var(--sun-text); margin: 0; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.78rem; font-weight: 800; }
 .empty { color: var(--muted); text-align: center; padding: 2rem 0; }
 .status { color: var(--muted); font-size: 0.92rem; }
 .status.error { color: var(--danger); }
@@ -61,25 +98,26 @@ button:disabled { opacity: 0.55; cursor: default; }
 .primary, .secondary {
   display: block;
   width: 100%;
-  min-height: 48px;
-  border-radius: var(--radius);
+  min-height: 50px;
+  border-radius: 999px;
   border: 0;
   margin-top: 0.8rem;
-  font-weight: 600;
+  font-weight: 800;
 }
 .primary { background: var(--accent); color: var(--accent-text); }
 .secondary { background: var(--accent-soft); color: var(--text); }
-.link { background: none; border: 0; color: var(--accent); padding: 0.6rem 0; display: block; }
+.link { background: none; border: 0; color: var(--accent); font-weight: 700; padding: 0.6rem 0; display: block; }
 
 input, textarea {
   width: 100%;
   font: inherit;
   color: var(--text);
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
   padding: 0.75rem 0.9rem;
 }
+input:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 textarea { resize: vertical; }
 label { display: block; font-size: 0.9rem; color: var(--muted); margin-top: 0.6rem; }
 
@@ -88,37 +126,48 @@ label { display: block; font-size: 0.9rem; color: var(--muted); margin-top: 0.6r
   min-height: 48px;
   padding: 0 1.3rem;
   border-radius: 999px;
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--line);
   background: var(--surface);
   color: var(--text);
+  font-weight: 700;
 }
-.chip.selected { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+.chip.selected { background: var(--sun); border-color: var(--sun); color: #2a1408; }
 
 .card {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
   padding: 0.4rem 1rem 0.8rem;
   margin-top: 1rem;
 }
 .card header { display: flex; justify-content: space-between; align-items: baseline; }
-.card h2 { margin: 0.6rem 0 0.2rem; }
+.card h2 { margin: 0.7rem 0 0.2rem; }
 
 .composer { margin-bottom: 1rem; }
 
 .notes { list-style: none; margin: 0; padding: 0; }
-.note { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.8rem 1rem; margin-bottom: 0.7rem; }
+.note {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--sun);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.7rem;
+}
 .note p { margin: 0 0 0.3rem; white-space: pre-wrap; overflow-wrap: anywhere; }
 .note-meta { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 0.85rem; }
 .note-meta .link { padding: 0; }
-.notes.compact .note { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 0.6rem 0; margin: 0; background: none; }
+.notes.compact .note { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; box-shadow: none; padding: 0.6rem 0; margin: 0; background: none; }
 .notes.compact .note:last-child { border-bottom: 0; }
 
 .menu { list-style: none; padding: 0; margin: 0; }
 .menu a {
   display: flex; gap: 0.8rem; align-items: center;
-  min-height: 52px; padding: 0 1rem; margin-bottom: 0.5rem;
+  min-height: 54px; padding: 0 1rem; margin-bottom: 0.5rem;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow);
   color: var(--text); text-decoration: none;
 }
 
@@ -131,7 +180,7 @@ label { display: block; font-size: 0.9rem; color: var(--muted); margin-top: 0.6r
 }
 .tabbar a {
   flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
-  font-size: 0.72rem; color: var(--muted); text-decoration: none; padding: 4px 0; border-radius: 10px;
+  font-size: 0.74rem; font-weight: 700; color: var(--muted); text-decoration: none; padding: 4px 0; border-radius: 14px;
 }
 .tabbar a span { font-size: 1.3rem; line-height: 1.2; }
-.tabbar a.active { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+.tabbar a.active { color: var(--sun-text); background: var(--sun-soft); }

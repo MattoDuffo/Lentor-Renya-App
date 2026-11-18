@@ -26,6 +26,25 @@ coffee?") without having to ask.
    tap targets, works on iPhone and Android.
 6. **Sensitive data stays out.** No salary, IDs, documents or passwords.
 
+## Look and feel
+
+Derived from the **Lentor Beach Club** logo (a happy red panda by the pool):
+sunny, relaxed and friendly, like a holiday rather than an office.
+
+| Role | Light | Dark ("after sunset") | From the logo |
+|---|---|---|---|
+| Background | `#fff7ec` | `#18120f` | warm sand |
+| Text | `#3a1d14` | `#f8ebdd` | panda brown |
+| Headings | `#1e3a6b` | `#a9c6f0` | sign navy |
+| Buttons, links | `#0b7590` | `#45c3dd` | pool turquoise |
+| Highlights (active tab, selection, note edge) | `#f0661a` | `#ff8b45` | panda orange |
+| Occasional accent | `#f47c98` | `#ff9ab2` | flamingo |
+
+Type: **Nunito** (rounded and friendly) for everything, and **Pacifico** (the
+logo's script feel) only for greetings. Fonts are bundled so they work offline.
+Soft rounded cards, pill buttons and the logo illustration at the top of Today.
+Text colour pairs meet WCAG AA contrast.
+
 ## Sections (modules)
 
 ### First version

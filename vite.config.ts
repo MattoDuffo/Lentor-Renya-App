@@ -11,21 +11,26 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg'],
+      includeAssets: ['favicon.png', 'apple-touch-icon.png', 'logo.jpg'],
       manifest: {
         name: 'Lentor Home',
         short_name: 'Lentor',
         description: 'Our household app: the day at a glance and answers to everyday questions.',
-        theme_color: '#2f6f5e',
-        background_color: '#f7f5f0',
+        theme_color: '#0b7590',
+        background_color: '#fff7ec',
         display: 'standalone',
         start_url: base,
         scope: base,
-        icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
+        icons: [
+          { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'icon-512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+        ],
       },
       workbox: {
         // Household data comes from the GitHub API and is cached by the app itself.
         navigateFallback: `${base}index.html`,
+        globPatterns: ['**/*.{js,css,html,woff2,png,jpg}'],
       },
     }),
   ],
