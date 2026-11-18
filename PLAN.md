@@ -140,4 +140,7 @@ What this means in practice:
   shell, GitHub data layer with offline cache and conflict retry, first-run
   setup ("who are you" plus access key, or try-it-out mode), Notes module
 - [ ] Switch to GitHub Pro, make repo private, enable Pages, create access keys
-- [ ] First version modules
+- [x] First version: Today, Search, House guide, Routines, Meals & recipes
+  (plan, ideas, recipe book), Shopping list, Notes; photos; sample content in
+  try-out mode
+- [ ] Next modules

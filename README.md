@@ -21,8 +21,28 @@ in your browser only.
 1. Create `src/modules/<id>/index.tsx` exporting `defineModule({ id, title, icon, Page, TodayCard? })`.
 2. Add it to the list in `src/modules/index.ts`.
 
-Store shared data with `useDoc('<file>.json', emptyValue)`. It handles loading,
-offline caching, refreshing and saving (with retry if someone else saved first).
+Building blocks:
+- `useDoc('<file>.json', emptyValue)`: a shared JSON file. Handles loading,
+  offline caching, refreshing, instant on-screen updates and saving (merging
+  with anyone who saved first).
+- `PhotoButton` / `PhotoListEditor` / `Photo` (`src/core/photos.tsx`): photos
+  are shrunk on the phone, stored under `photos/` and cached.
+- `RichText`: plain text with `- ` bullets and `1. ` steps.
+- Optional manifest fields: `TodayCard` + `todayOrder` for the Today screen,
+  `search` to make a file searchable.
+
+Try-out mode starts with sample content from `src/demo/seed.ts`.
+
+## Sections
+
+| Section | File(s) on the data branch |
+|---|---|
+| House guide | `guide.json` |
+| Meals & recipes | `meals.json`, `recipes.json` |
+| Shopping list | `shopping.json` |
+| Routines | `routines.json` (ticks stay on each phone only) |
+| Notes | `notes.json` |
+| Photos | `photos/*.jpg` |
 
 ## Going live (one-time)
 

@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { defineModule } from '../../core/module';
 import { newId, useDoc } from '../../core/useDoc';
 import { useSession } from '../../core/session';
-import { StatusLine } from '../../shell/StatusLine';
+import { StatusLine } from '../../ui/StatusLine';
 
 interface Note {
   id: string;
@@ -101,6 +101,15 @@ export default defineModule({
   id: 'notes',
   title: 'Notes',
   icon: '📝',
+  description: 'Shared notes for everyone',
   Page: NotesPage,
   TodayCard: NotesToday,
+  todayOrder: 40,
+  search: [
+    {
+      path: PATH,
+      empty: EMPTY,
+      items: (f: NotesFile) => f.notes.map((n) => ({ title: n.text.split('\n')[0].slice(0, 80), snippet: `Note from ${n.author}`, text: n.text, to: '/notes' })),
+    },
+  ],
 });

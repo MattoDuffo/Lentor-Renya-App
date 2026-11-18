@@ -1,4 +1,4 @@
-import { ConflictError, type DataStore, type StoredFile } from './store';
+import { blobToBase64, ConflictError, type DataStore, type StoredFile } from './store';
 
 export interface GitHubConfig {
   owner: string;
@@ -84,13 +84,34 @@ export class GitHubStore implements DataStore {
     return { text: fromBase64(body.content ?? ''), version: body.sha };
   }
 
+  async readBlob(path: string): Promise<Blob | null> {
+    const res = await fetch(`${API}${this.contentsUrl(path)}?ref=${encodeURIComponent(this.cfg.branch)}`, {
+      headers: {
+        Accept: 'application/vnd.github.raw',
+        Authorization: `Bearer ${this.cfg.token}`,
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+    });
+    if (res.status === 404) return null;
+    if (!res.ok) throw new Error(`Could not load photo (${res.status}).`);
+    return res.blob();
+  }
+
+  async writeBlob(path: string, blob: Blob, message: string): Promise<void> {
+    await this.put(path, await blobToBase64(blob), null, message);
+  }
+
   async write(path: string, text: string, baseVersion: string | null, message: string): Promise<string> {
+    return this.put(path, toBase64(text), baseVersion, message);
+  }
+
+  private async put(path: string, content: string, baseVersion: string | null, message: string): Promise<string> {
     await this.ensureBranch();
     const res = await this.request(this.contentsUrl(path), {
       method: 'PUT',
       body: JSON.stringify({
         message,
-        content: toBase64(text),
+        content,
         branch: this.cfg.branch,
         ...(baseVersion ? { sha: baseVersion } : {}),
       }),

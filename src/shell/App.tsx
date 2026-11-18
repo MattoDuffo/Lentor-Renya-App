@@ -1,9 +1,11 @@
-import { HashRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { HashRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { modules } from '../modules';
 import { SessionProvider } from '../core/session';
 import { Setup } from './Setup';
 import { Today } from './Today';
 import { More } from './More';
+import { Search } from './Search';
 
 /** Phones fit about five tabs: Today, the first three modules, then More. */
 const TAB_MODULES = 3;
@@ -26,10 +28,19 @@ function TabBar() {
   );
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 export function App() {
   return (
     <SessionProvider fallback={(save) => <Setup onDone={save} />}>
       <HashRouter>
+        <ScrollToTop />
         <main className="page">
           <Routes>
             <Route path="/" element={<Today />} />
@@ -37,6 +48,7 @@ export function App() {
               <Route key={id} path={`/${id}/*`} element={<Page />} />
             ))}
             <Route path="/more" element={<More />} />
+            <Route path="/search" element={<Search />} />
             <Route path="*" element={<Today />} />
           </Routes>
         </main>
